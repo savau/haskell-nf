@@ -5,12 +5,10 @@
 module Data.NormalForm.DNF
   ( Literal(..)
   , DNF(..)
-  , dnfFalse
+  , dnfTrue, dnfFalse
   , dnfSingleton
-  , dnfLit
-  , dnfNeg
-  , dnfAnd
-  , dnfOr
+  , dnfLit, dnfNeg
+  , dnfAnd, dnfOr
   ) where
 
 import Control.DeepSeq (NFData)
@@ -36,7 +34,8 @@ newtype DNF a = DNF { dnfTerms :: Set (Set (Literal a)) }
   deriving (Eq, Ord, Show, Read, Data, Generic, Typeable)
   deriving anyclass (Binary, Hashable, NFData)
 
-dnfFalse :: DNF a
+dnfTrue, dnfFalse :: DNF a
+dnfTrue  = DNF $ Set.singleton Set.empty
 dnfFalse = DNF Set.empty
 
 dnfSingleton :: Literal a -> DNF a
