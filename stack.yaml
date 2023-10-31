@@ -12,3 +12,4 @@ packages:
 extra-deps: []
 
 resolver: lts-20.24
+allow-newer: true

@@ -15,8 +15,15 @@ library:
 
 dependencies:
   - base
+  - binary
+  - deepseq
+  - hashable
 
-default-extensions: []
+default-extensions:
+  - DeriveAnyClass
+  - DeriveDataTypeable
+  - DeriveGeneric
+  - DerivingStrategies
 
 other-extensions: []
 

@@ -15,7 +15,6 @@ build-type:     Simple
 
 library
   exposed-modules:
-      Data.NormalForm
       Data.NormalForm.DNF
   other-modules:
       Paths_haskell_nf
@@ -23,7 +22,15 @@ library
       Paths_haskell_nf
   hs-source-dirs:
       src
+  default-extensions:
+      DeriveAnyClass
+      DeriveDataTypeable
+      DeriveGeneric
+      DerivingStrategies
   ghc-options: -Wall
   build-depends:
       base
+    , binary
+    , deepseq
+    , hashable
   default-language: Haskell2010
