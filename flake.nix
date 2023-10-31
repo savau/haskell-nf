@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2023 Sarah Vaupel <sarah.vaupel@uniworx.de>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 {
   inputs = {
     nixpkgs = {
@@ -53,7 +57,7 @@
 
         inherit (pkgs.lib) recursiveUpdate;
       in {
-        devShell = import ./shell.nix { pkgs = self.legacyPackages.${system}; nixpkgsPath = nixpkgs; };
+        devShell = import ./shell.nix { pkgs = self.legacyPackages.${system}; };
 
         legacyPackages = pkgs.lib.foldr (overlay: acc: acc // recursiveUpdate (overlay self.legacyPackages.${system} pkgs) pkgs) {} overlays;
       }
