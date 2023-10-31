@@ -7,7 +7,7 @@ module Data.NormalForm.DNF
   , DNF(..)
   , dnfTrue, dnfFalse
   , dnfSingleton
-  , dnfLit, dnfNeg
+  , dnfPos, dnfNeg
   , dnfAnd, dnfOr
   ) where
 
@@ -22,10 +22,10 @@ import Data.Set (Set)
 import GHC.Generics (Generic)
 
 
--- | A single literal of a term may or may not be negated
+-- | A single literal of a term may be positive or negative
 data Literal a =
-    Literal        { literal :: a }
-  | NegatedLiteral { literal :: a }
+    LiteralPos { literal :: a }
+  | LiteralNeg { literal :: a }
   deriving (Eq, Ord, Show, Read, Data, Generic, Typeable)
   deriving anyclass (Hashable, Binary, NFData)
 
@@ -41,9 +41,9 @@ dnfFalse = DNF Set.empty
 dnfSingleton :: Literal a -> DNF a
 dnfSingleton = DNF . Set.singleton . Set.singleton
 
-dnfLit, dnfNeg :: a -> DNF a
-dnfLit = dnfSingleton . Literal
-dnfNeg = dnfSingleton . NegatedLiteral
+dnfPos, dnfNeg :: a -> DNF a
+dnfPos = dnfSingleton . LiteralPos
+dnfNeg = dnfSingleton . LiteralNeg
 
 infixr 3 `dnfAnd`
 infixr 2 `dnfOr`
