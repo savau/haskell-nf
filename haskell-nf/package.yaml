@@ -1,0 +1,23 @@
+# SPDX-FileCopyrightText: 2023 Sarah Vaupel <sarah.vaupel@uniworx.de>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+name: haskell-nf
+version: 0.0.0
+license: AGPL-3.0-or-later
+license-file: LICENSE
+author: "Sarah Vaupel"
+maintainer: "sarah.vaupel@uniworx.de"
+copyright: "2023 Sarah Vaupel <sarah.vaupel@uniworx.de>"
+
+library:
+  source-dirs: src
+
+dependencies: []
+
+default-extensions: []
+
+other-extensions: []
+
+ghc-options:
+  - Wall
