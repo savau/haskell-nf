@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 name: haskell-nf
-version: 0.3.0
+version: 0.3.1
 license: AGPL-3.0-or-later
 license-file: LICENSE
 author: "Sarah Vaupel"
@@ -12,6 +12,8 @@ copyright: "2023 Sarah Vaupel <sarah.vaupel@uniworx.de>"
 
 library:
   source-dirs: src
+  exposed-modules:
+    - Data.NormalForm.DNF
 
 dependencies:
   - aeson
