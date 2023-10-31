@@ -20,4 +20,4 @@ default-extensions: []
 other-extensions: []
 
 ghc-options:
-  - Wall
+  - -Wall
