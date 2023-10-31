@@ -5,7 +5,7 @@ cabal-version: 2.2
 -- see: https://github.com/sol/hpack
 
 name:           haskell-nf
-version:        0.1.0
+version:        0.2.0
 author:         Sarah Vaupel
 maintainer:     sarah.vaupel@uniworx.de
 copyright:      2023 Sarah Vaupel <sarah.vaupel@uniworx.de>
@@ -16,6 +16,7 @@ build-type:     Simple
 library
   exposed-modules:
       Data.NormalForm.DNF
+      Data.NormalForm.Internal
   other-modules:
       Paths_haskell_nf
   autogen-modules:
@@ -27,10 +28,13 @@ library
       DeriveDataTypeable
       DeriveGeneric
       DerivingStrategies
+      TemplateHaskell
   ghc-options: -Wall
   build-depends:
-      base
+      aeson
+    , base
     , binary
+    , casing
     , containers
     , deepseq
     , hashable

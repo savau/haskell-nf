@@ -11,11 +11,17 @@ module Data.NormalForm.DNF
   , dnfAnd, dnfOr
   ) where
 
+import Data.NormalForm.Internal
+
 import Control.DeepSeq (NFData)
+
+import Data.Aeson
+import Data.Aeson.TH
 
 import Data.Binary (Binary)
 import Data.Data (Data, Typeable)
 import Data.Hashable (Hashable)
+
 import qualified Data.Set as Set
 import Data.Set (Set)
 
@@ -29,11 +35,23 @@ data Literal a =
   deriving (Eq, Ord, Show, Read, Data, Generic, Typeable)
   deriving anyclass (Hashable, Binary, NFData)
 
+deriveJSON dnfAesonOptions
+  { sumEncoding = TaggedObject "signum" "literal"
+  } ''Literal
+
 
 -- | A disjunctive normal form is a disjunction (set) of terms, a term being a conjunction (set) of literals
 newtype DNF a = DNF { dnfTerms :: Set (Set (Literal a)) }
   deriving (Eq, Ord, Show, Read, Data, Generic, Typeable)
   deriving anyclass (Binary, Hashable, NFData)
+
+-- hack to ensure DNF is in the type environment at the reify used in mkParseJSON
+$(return [])
+
+instance ToJSON a => ToJSON (DNF a) where
+  toJSON = $(mkToJSON dnfAesonOptions ''DNF)
+instance (FromJSON a, Ord a) => FromJSON (DNF a) where
+  parseJSON = $(mkParseJSON dnfAesonOptions ''DNF)
 
 
 -- | The disjunction of no terms corresponds to False
