@@ -9,8 +9,18 @@ import Data.Aeson
 import Text.Casing (fromHumps, toKebab)
 
 
-dnfAesonOptions :: Options
+camelToKebab :: String -> String
+camelToKebab = toKebab . fromHumps
+
+litAesonOptions, dnfAesonOptions :: Options
+litAesonOptions = defaultOptions
+  { constructorTagModifier = camelToKebab
+  , fieldLabelModifier     = camelToKebab
+  , sumEncoding            = TaggedObject "signum" "literal"
+  }
 dnfAesonOptions = defaultOptions
   { constructorTagModifier = camelToKebab
   , fieldLabelModifier     = camelToKebab
-  } where camelToKebab     = toKebab . fromHumps
+  , tagSingleConstructors  = True  -- for compatibility with future CNF
+  , sumEncoding            = TaggedObject "type" "formula"
+  }

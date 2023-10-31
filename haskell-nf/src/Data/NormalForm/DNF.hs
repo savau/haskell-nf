@@ -35,9 +35,7 @@ data Literal a =
   deriving (Eq, Ord, Show, Read, Data, Generic, Typeable)
   deriving anyclass (Hashable, Binary, NFData)
 
-deriveJSON dnfAesonOptions
-  { sumEncoding = TaggedObject "signum" "literal"
-  } ''Literal
+deriveJSON litAesonOptions ''Literal
 
 
 -- | A disjunctive normal form is a disjunction (set) of terms, a term being a conjunction (set) of literals
