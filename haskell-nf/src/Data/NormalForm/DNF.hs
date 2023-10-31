@@ -9,7 +9,7 @@ module Data.NormalForm.DNF
 import Control.DeepSeq (NFData)
 
 import Data.Binary (Binary)
-import Data.Data (Data)
+import Data.Data (Data, Typeable)
 import Data.Hashable (Hashable)
 
 import GHC.Generics (Generic)
@@ -19,5 +19,5 @@ import GHC.Generics (Generic)
 data Literal a =
     Literal        { literal :: a }
   | NegatedLiteral { literal :: a }
-  deriving (Eq, Ord, Show, Read, Data, Generic)
+  deriving (Eq, Ord, Show, Read, Data, Generic, Typeable)
   deriving anyclass (Hashable, Binary, NFData)
