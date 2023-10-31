@@ -16,6 +16,7 @@ library:
 dependencies:
   - base
   - binary
+  - containers
   - deepseq
   - hashable
 

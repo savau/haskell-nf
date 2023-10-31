@@ -11,6 +11,7 @@ import Control.DeepSeq (NFData)
 import Data.Binary (Binary)
 import Data.Data (Data, Typeable)
 import Data.Hashable (Hashable)
+import Data.Set (Set)
 
 import GHC.Generics (Generic)
 
@@ -21,3 +22,7 @@ data Literal a =
   | NegatedLiteral { literal :: a }
   deriving (Eq, Ord, Show, Read, Data, Generic, Typeable)
   deriving anyclass (Hashable, Binary, NFData)
+
+newtype DNF a = DNF { dnfTerms :: Set (Set (Literal a)) }
+  deriving (Eq, Ord, Show, Read, Data, Generic, Typeable)
+  deriving anyclass (Binary, Hashable, NFData)
