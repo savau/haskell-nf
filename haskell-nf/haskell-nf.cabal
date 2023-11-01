@@ -10,7 +10,6 @@ author:         Sarah Vaupel
 maintainer:     sarah.vaupel@uniworx.de
 copyright:      2023 Sarah Vaupel <sarah.vaupel@uniworx.de>
 license:        AGPL-3.0-or-later
-license-file:   LICENSE
 build-type:     Simple
 
 library

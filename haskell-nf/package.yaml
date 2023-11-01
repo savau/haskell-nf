@@ -5,7 +5,6 @@
 name: haskell-nf
 version: 0.3.1
 license: AGPL-3.0-or-later
-license-file: LICENSE
 author: "Sarah Vaupel"
 maintainer: "sarah.vaupel@uniworx.de"
 copyright: "2023 Sarah Vaupel <sarah.vaupel@uniworx.de>"
