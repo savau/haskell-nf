@@ -41,7 +41,7 @@ deriveJSON litAesonOptions ''Literal
 -- | A disjunctive normal form is a disjunction (set) of terms, a term being a conjunction (set) of literals
 newtype DNF a = DNF { dnfTerms :: Set (Set (Literal a)) }
   deriving (Eq, Ord, Show, Read, Data, Generic, Typeable)
-  deriving anyclass (Binary, Hashable, NFData)
+  deriving anyclass (Binary, NFData)
 
 -- hack to ensure DNF is in the type environment at the reify used in mkParseJSON
 $(return [])
